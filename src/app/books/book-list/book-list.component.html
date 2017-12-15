@@ -5,22 +5,28 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-xs-12">
-    <a href="#" class="list-group-item clearfix" *ngFor="let book of books">
-      <div class="pull-left">
-        <h4 class="list-group-item-heading">{{ book.name }}</h4>
-        <p class="list-group-item-text">{{ book.author }}</p>
-        <p class="list-group-item-text">{{ book.pages }}</p>
-        <p class="list-group-item-text">{{ book.publicationDate }}</p>
-        <button class="btn btn-primary" (click)="editBook(book)">Edit</button>
-      </div>
-    </a>
+  <div class="col-md-12">
+    <table>
+      <th><a href="#" (click)="sort()"> Book Name </a></th>
+      <th>Author</th>
+      <th>No. of Pages</th>
+      <th>Date of Publication</th>
+      <th>Action</th>
+      <tr *ngFor="let book of books  | paginate: { itemsPerPage: 5, currentPage: p }">
+        <td>{{book.name}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.pages}}</td>
+        <td>{{book.publicationDate}}</td>
+        <td><button class="btn btn-primary" (click)="editBook(book)">Edit</button></td>
+      </tr>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>
 
 
 <div class="row">
-    <modal #bookModal [closeOnEscape]="false" [closeOnOutsideClick]="false">
+    <modal #bookModal [closeOnEscape]="true" [closeOnOutsideClick]="false">
       <modal-header>
         <h1>Edit Book details</h1>
       </modal-header>

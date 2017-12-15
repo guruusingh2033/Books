@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ModalModule } from "ng2-modal";
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -20,6 +21,7 @@ import { BookItemComponent } from './books/book-list/book-item/book-item.compone
   imports: [
     BrowserModule,
     ModalModule,
+    NgxPaginationModule,
     FormsModule
   ],
   providers: [],

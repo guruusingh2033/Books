@@ -33,6 +33,8 @@ export class BookListComponent implements OnInit {
   author: string;
   pages: number;
   pubDate: string;
+  p: number = 1;
+  ascSortOrder: boolean = true;
   @ViewChild('bookModal') bookModal;
 
   constructor() {
@@ -65,6 +67,15 @@ export class BookListComponent implements OnInit {
 
   hideForm(){
     this.bookModal.close();
+  }
+
+  sort(){
+    if (this.ascSortOrder) {
+      this.books.sort(function(a,b) {return (a.name < b.name) ? 1 : ((b.name < a.name) ? -1 : 0);} ); 
+    } else {
+      this.books.sort(function(a,b) {return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0);} ); 
+    }
+    this.ascSortOrder = !this.ascSortOrder;
   }
 
 }
